@@ -25,7 +25,7 @@ function draw_clock(obj) {
   push();
   textSize(1.6 * scale);
   fill(231, 0, 0);
-  rotate((360 / 60 * obj.seconds));
+  rotate(360 / 60 * obj.seconds);
   text(obj.seconds, 0, 0);
   pop();
 
