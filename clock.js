@@ -30,12 +30,19 @@ function draw_clock(obj) {
 function spirograph() {
   // -------------------------- main clock --------------------------
   translate(width / 2, height / 2);
-  noStroke();
+  fill(231, 231, 231, 255);
+  strokeWeight(2);
+
+  rotate(360 / 60 * obj.minutes - 90);
+  translate(100, 0);
 
   rotate(360 / 60 * obj.seconds - 90);
-  translate(100, 0);
-  fill(231, 0, 0);
-  rect(0, 0, 10, 10);
+  translate(50, 0);
+
+  rotate(360 / 1000 * obj.millis);
+  translate(10, 0);
+
+  point(0,0);
 }
 
 // use preload() to change background once
