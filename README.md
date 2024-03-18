@@ -20,6 +20,6 @@ Further exploration of clock ideas lead me to a concept in which a geometric "sp
 
 
 - Completed `maeda_clock.js`
-- 
+- Started working on `clock.js`
 
 ___
