@@ -170,7 +170,7 @@ function draw () {
   obj.millis = mils;
   obj.seconds_until_alarm = alarm;
   draw_clock(obj);
-  spirograph(); // add new function
+  main_clock(); // add new function
 }
 
 function keyTyped() {

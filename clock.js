@@ -23,23 +23,34 @@ function draw_clock(obj) {
   text("Millis: " + obj.millis, 10, 80);
 }
 
-function spirograph() {
+function main_clock() {
   // -------------------------- main clock --------------------------
-  translate(width / 2, height / 2);
+  let millisWidth = map(obj.millis, 0, 999, 0, 90);
+  let secondsWidth = map(obj.seconds, 0, 59, 0, 90);
+  let minutesWidth = map(obj.minutes, 0, 59, 0, 90);
+  let hoursWidth = map(obj.hours, 0, 23, 0, 90);
+
+
+  // fill('rgba(231, 231, 231, 0.1)');
   noStroke();
 
-  let millisMap = map(obj.millis, 0, 999, 0, 500);
-  let secondsMap = map(obj.seconds, 0, 59, 0, 500);
-  let minutesMap = map(obj.minutes, 0, 59, 0, 500);
-  let hoursMap = map(obj.hours, 0, 23, 0, 500);
+  for (let repeatX = 0; repeatX <= 960; repeatX += 96) {
 
-  fill('rgba(231, 0, 0, 0.2)');
-  ellipse(0, 0, millisMap, millisMap);
-  fill('rgba(0, 231, 0, 0.2)');
-  ellipse(0, 0, secondsMap, secondsMap);
-  fill('rgba(0, 0, 231, 0.2)');
-  ellipse(0, 0, minutesMap, minutesMap);
-  fill('rgba(231, 231, 231, 0.2)');
-  ellipse(0, 0, hoursMap, hoursMap);
+    for (let repeatY = 0; repeatY <= 500; repeatY += 100) {
 
+    fill('rgba(231, 231, 231, 0.2)');
+    ellipse(repeatX - 45, repeatY - 45, hoursWidth, hoursWidth);
+
+    fill('rgba(231, 231, 231, 0.15)');
+    ellipse(repeatX, repeatY - 45, minutesWidth, minutesWidth);
+
+    fill('rgba(231, 231, 231, 0.1)');
+    ellipse(repeatX - 45, repeatY, secondsWidth, secondsWidth);
+
+    fill('rgba(231, 231, 231, 0.05)');
+    ellipse(repeatX, repeatY, millisWidth, millisWidth);
+
+    }
+
+  }
 }
