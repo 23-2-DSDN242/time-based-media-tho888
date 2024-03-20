@@ -2,33 +2,24 @@ function draw_clock(obj) {
 
   // ____________________ setup & variables ____________________
   angleMode(DEGREES);
-  colorMode(HSB);
+  colorMode(HSB, 360, 100, 100);
   fill(255);
   textSize(10);
   noStroke();
 
-  let clockSize = 210;
+  let darkGrey = 'hsb(22, 20%, 16%)';
+  let salmon = 'hsb(9, 61%, 91%)';
+
+  let clockSize = 200;
   let minutesScale = 1.75;
   let hoursScale = 3.5;
 
-  let bgColour = 0;
-  let bgColourAlarm = 75;
-  // add a map to change background, hour, second and minute colours gradually as timer counts down
+  let bgColour = darkGrey;
+  let bgColourAlarm = salmon;
+  let clockColour = salmon;
+  let clockColourAlarm = darkGrey;
 
-  let secondsColour = 50;
-  let secondsColourAlarm = 50;
-  let minutesColour = 70;
-  let minutesColourAlarm = 30;
-  let hoursColour = 90;
-  let hoursColourAlarm = 10;
-
-  if (obj.seconds_until_alarm < 0) {
-    background(bgColour);
-
-  } else if (obj.seconds_until_alarm > 0) {
-    background(bgColourAlarm); // change this
-    
-  } else if (obj.seconds_until_alarm == 0) {
+  if (obj.seconds_until_alarm == 0) {
     if (obj.seconds % 2 === 0) {
       background(bgColour);
 
@@ -36,7 +27,10 @@ function draw_clock(obj) {
       background(bgColourAlarm);
 
     }
-  }
+  } else {
+    background(bgColour);
+
+  } 
 
   let secondsPadded = nf(obj.seconds, 2);
   let minutesPadded = nf(obj.minutes, 2);
@@ -62,18 +56,21 @@ function draw_clock(obj) {
     rotate(6);
 
     if (obj.seconds_until_alarm < 0) {
-      stroke(secondsColour);
+      stroke(clockColour);
 
     } else if (obj.seconds_until_alarm == 0) {
 
       if (obj.seconds % 2 === 0) {
-        stroke(secondsColour);
+        stroke(clockColour);
 
       } else {
-        stroke(secondsColourAlarm);
+        stroke(clockColourAlarm);
 
       }
-    }
+    } else {
+      stroke(clockColour);
+  
+    } 
 
     point(-clockSize, 0);
   }
@@ -84,18 +81,21 @@ function draw_clock(obj) {
     rotate(6);
 
     if (obj.seconds_until_alarm < 0) {
-      stroke(minutesColour);
+      stroke(clockColour);
 
     } else if (obj.seconds_until_alarm == 0) {
 
       if (obj.seconds % 2 === 0) {
-        stroke(minutesColour);
+        stroke(clockColour);
 
       } else {
-        stroke(minutesColourAlarm);
+        stroke(clockColourAlarm);
 
       }
-    }
+    } else {
+      stroke(clockColour);
+  
+    } 
 
     point(-clockSize / minutesScale, 0);
   }
@@ -106,18 +106,21 @@ function draw_clock(obj) {
     rotate(30);
 
     if (obj.seconds_until_alarm < 0) {
-      stroke(hoursColour);
+      stroke(clockColour);
 
     } else if (obj.seconds_until_alarm == 0) {
 
       if (obj.seconds % 2 === 0) {
-        stroke(hoursColour);
+        stroke(clockColour);
 
       } else {
-        stroke(hoursColourAlarm);
+        stroke(clockColourAlarm);
 
       }
-    }
+    } else {
+      stroke(clockColour);
+  
+    } 
 
     point(-clockSize / hoursScale, 0);
   }
@@ -131,26 +134,31 @@ function draw_clock(obj) {
   rotate(6 * obj.seconds);
 
   if (obj.seconds_until_alarm < 0) {
-    fill(secondsColour);
-    stroke(secondsColour);
+    fill(clockColour);
+    stroke(clockColour);
 
   } else if (obj.seconds_until_alarm == 0) {
 
     if (obj.seconds % 2 === 0) {
-      fill(secondsColour);
-      stroke(secondsColour);
+      fill(clockColour);
+      stroke(clockColour);
 
     } else {
-      fill(secondsColourAlarm);
-      stroke(secondsColourAlarm);
+      fill(clockColourAlarm);
+      stroke(clockColourAlarm);
 
     }
-  }
+  } else {
+    fill(clockColour);
+    stroke(clockColour);
 
-  textSize(clockSize / 16)
+  } 
+
+  textSize(clockSize / 12);
   text(secondsPadded, 0, -clockSize / 10 - clockSize);
   rotate(90);
-  line(-clockSize, 0, clockSize, 0);
+  // line(-clockSize, 0, clockSize, 0);
+  ellipse(-clockSize, 0, clockSize / 30, clockSize / 30);
   pop();
 
 
@@ -158,26 +166,31 @@ function draw_clock(obj) {
   rotate(6 * obj.minutes);
 
   if (obj.seconds_until_alarm < 0) {
-    fill(minutesColour);
-    stroke(minutesColour);
+    fill(clockColour);
+    stroke(clockColour);
 
   } else if (obj.seconds_until_alarm == 0) {
 
     if (obj.seconds % 2 === 0) {
-      fill(minutesColour);
-      stroke(minutesColour);
+      fill(clockColour);
+      stroke(clockColour);
 
     } else {
-      fill(minutesColourAlarm);
-      stroke(minutesColourAlarm);
+      fill(clockColourAlarm);
+      stroke(clockColourAlarm);
 
     }
-  }
+  } else {
+    fill(clockColour);
+    stroke(clockColour);
 
-  textSize(clockSize / 16)
+  } 
+
+  textSize(clockSize / 12)
   text(minutesPadded, 0, -clockSize / 10 - clockSize / minutesScale);
   rotate(90);
   line(-clockSize / minutesScale, 0, clockSize / minutesScale, 0);
+  // ellipse(-clockSize / minutesScale, 0, clockSize / 30, clockSize / 30);
   pop();
 
 
@@ -185,24 +198,28 @@ function draw_clock(obj) {
   rotate(30 * obj.hours);
 
   if (obj.seconds_until_alarm < 0) {
-    fill(hoursColour);
-    stroke(hoursColour);
+    fill(clockColour);
+    stroke(clockColour);
 
   } else if (obj.seconds_until_alarm == 0) {
 
     if (obj.seconds % 2 === 0) {
-      fill(hoursColour);
-      stroke(hoursColour);
+      fill(clockColour);
+      stroke(clockColour);
 
     } else {
-      fill(hoursColourAlarm);
-      stroke(hoursColourAlarm);
+      fill(clockColourAlarm);
+      stroke(clockColourAlarm);
 
     }
-  }
+  } else {
+    fill(clockColour);
+    stroke(clockColour);
 
-  textSize(clockSize / 16)
-  
+  } 
+
+  textSize(clockSize / 12)
+
   if (obj.hours % 12 === 0) {
     text(12, 0, -clockSize / 10 - clockSize / hoursScale);
 
@@ -213,5 +230,6 @@ function draw_clock(obj) {
 
   rotate(90);
   line(-clockSize / hoursScale, 0, clockSize / hoursScale, 0);
+  // ellipse(-clockSize / hoursScale, 0, clockSize / 30, clockSize / 30);
   pop();
 }
