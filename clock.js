@@ -7,8 +7,8 @@ function draw_clock(obj) {
   textSize(10);
   noStroke();
 
-  let darkGrey = 'hsb(22, 20%, 16%)';
-  let salmon = 'hsb(9, 61%, 91%)';
+  let darkGrey = 'hsb(26, 19%, 14%)';
+  let salmon = 'hsb(9, 61%, 95%)';
 
   let clockSize = 200;
   let minutesScale = 1.75;
@@ -30,7 +30,7 @@ function draw_clock(obj) {
   } else {
     background(bgColour);
 
-  } 
+  }
 
   let secondsPadded = nf(obj.seconds, 2);
   let minutesPadded = nf(obj.minutes, 2);
@@ -48,7 +48,7 @@ function draw_clock(obj) {
 
   translate(width / 2, height / 2);
   stroke(255);
-  strokeWeight(2);
+  strokeWeight(3);
 
   // ____________________ drawing circles ____________________ 
   push();
@@ -69,8 +69,8 @@ function draw_clock(obj) {
       }
     } else {
       stroke(clockColour);
-  
-    } 
+
+    }
 
     point(-clockSize, 0);
   }
@@ -94,8 +94,8 @@ function draw_clock(obj) {
       }
     } else {
       stroke(clockColour);
-  
-    } 
+
+    }
 
     point(-clockSize / minutesScale, 0);
   }
@@ -119,8 +119,8 @@ function draw_clock(obj) {
       }
     } else {
       stroke(clockColour);
-  
-    } 
+
+    }
 
     point(-clockSize / hoursScale, 0);
   }
@@ -131,8 +131,7 @@ function draw_clock(obj) {
   textAlign(CENTER);
 
   push();
-  rotate(6 * obj.seconds);
-
+  
   if (obj.seconds_until_alarm < 0) {
     fill(clockColour);
     stroke(clockColour);
@@ -152,8 +151,9 @@ function draw_clock(obj) {
     fill(clockColour);
     stroke(clockColour);
 
-  } 
+  }
 
+  rotate(6 * obj.seconds);
   textSize(clockSize / 12);
   text(secondsPadded, 0, -clockSize / 10 - clockSize);
   rotate(90);
@@ -163,7 +163,6 @@ function draw_clock(obj) {
 
 
   push();
-  rotate(6 * obj.minutes);
 
   if (obj.seconds_until_alarm < 0) {
     fill(clockColour);
@@ -184,18 +183,17 @@ function draw_clock(obj) {
     fill(clockColour);
     stroke(clockColour);
 
-  } 
+  }
 
+  rotate(6 * obj.minutes);
   textSize(clockSize / 12)
   text(minutesPadded, 0, -clockSize / 10 - clockSize / minutesScale);
   rotate(90);
   line(-clockSize / minutesScale, 0, clockSize / minutesScale, 0);
-  // ellipse(-clockSize / minutesScale, 0, clockSize / 30, clockSize / 30);
   pop();
 
 
   push();
-  rotate(30 * obj.hours);
 
   if (obj.seconds_until_alarm < 0) {
     fill(clockColour);
@@ -216,8 +214,9 @@ function draw_clock(obj) {
     fill(clockColour);
     stroke(clockColour);
 
-  } 
+  }
 
+  rotate(30 * obj.hours);
   textSize(clockSize / 12)
 
   if (obj.hours % 12 === 0) {
@@ -230,6 +229,5 @@ function draw_clock(obj) {
 
   rotate(90);
   line(-clockSize / hoursScale, 0, clockSize / hoursScale, 0);
-  // ellipse(-clockSize / hoursScale, 0, clockSize / 30, clockSize / 30);
   pop();
 }
