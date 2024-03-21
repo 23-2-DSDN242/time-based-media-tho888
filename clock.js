@@ -131,7 +131,7 @@ function draw_clock(obj) {
   textAlign(CENTER);
 
   push();
-  
+
   if (obj.seconds_until_alarm < 0) {
     fill(clockColour);
     stroke(clockColour);
