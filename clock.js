@@ -7,18 +7,19 @@ function draw_clock(obj) {
   textSize(10);
   noStroke();
 
-  let darkGrey = 'hsb(26, 19%, 14%)';
-  let opaqueGrey = 'hsba(9, 25%, 35%, 0.3)';
-  let salmon = 'hsb(9, 61%, 95%)';
+  let colour1 = 'hsb(26, 19%, 14%)';
+  let colour1a = 'hsba(9, 25%, 35%, 0.3)';
+  let colour2 = 'hsb(9, 61%, 95%)';
 
   let clockSize = 200;
   let minutesScale = 1.75;
   let hoursScale = 3.5;
 
-  let bgColour = darkGrey;
-  let bgColourAlarm = salmon;
-  let clockColour = salmon;
-  let clockColourAlarm = darkGrey;
+  let bgColour = colour1;
+  let bgColourAlarm = colour2;
+  let opaqueColour = colour1a;
+  let clockColour = colour2;
+  let clockColourAlarm = colour1;
 
   if (obj.seconds_until_alarm == 0) {
     if (obj.seconds % 2 === 0) {
@@ -159,8 +160,8 @@ function draw_clock(obj) {
   text(secondsPadded, 0, -clockSize / 10 - clockSize);
   rotate(90);
   ellipse(-clockSize, 0, clockSize / 30, clockSize / 30);
-  fill(opaqueGrey);
-  stroke(opaqueGrey);
+  fill(opaqueColour);
+  stroke(opaqueColour);
   ellipse(-clockSize, 0, clockSize / 7, clockSize / 7);
   pop();
 
@@ -193,8 +194,8 @@ function draw_clock(obj) {
   text(minutesPadded, 0, -clockSize / 10 - clockSize / minutesScale);
   rotate(90);
   line(-clockSize / minutesScale, 0, clockSize / minutesScale, 0);
-  fill(opaqueGrey);
-  stroke(opaqueGrey);
+  fill(opaqueColour);
+  stroke(opaqueColour);
   ellipse(-clockSize / minutesScale, 0, clockSize / 7, clockSize / 7);
   pop();
 
@@ -235,8 +236,8 @@ function draw_clock(obj) {
 
   rotate(90);
   line(-clockSize / hoursScale, 0, clockSize / hoursScale, 0);
-  fill(opaqueGrey);
-  stroke(opaqueGrey);
+  fill(opaqueColour);
+  stroke(opaqueColour);
   ellipse(-clockSize / hoursScale, 0, clockSize / 7, clockSize / 7);
   pop();
 }
