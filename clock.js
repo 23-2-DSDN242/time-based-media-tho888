@@ -8,7 +8,7 @@ function draw_clock(obj) {
   noStroke();
 
   let darkGrey = 'hsb(26, 19%, 14%)';
-  let opaqueGrey = 'hsba(9, 25%, 30%, 0.2)';
+  let opaqueGrey = 'hsba(9, 25%, 35%, 0.3)';
   let salmon = 'hsb(9, 61%, 95%)';
 
   let clockSize = 200;
@@ -193,6 +193,9 @@ function draw_clock(obj) {
   text(minutesPadded, 0, -clockSize / 10 - clockSize / minutesScale);
   rotate(90);
   line(-clockSize / minutesScale, 0, clockSize / minutesScale, 0);
+  fill(opaqueGrey);
+  stroke(opaqueGrey);
+  ellipse(-clockSize / minutesScale, 0, clockSize / 7, clockSize / 7);
   pop();
 
 
@@ -232,5 +235,8 @@ function draw_clock(obj) {
 
   rotate(90);
   line(-clockSize / hoursScale, 0, clockSize / hoursScale, 0);
+  fill(opaqueGrey);
+  stroke(opaqueGrey);
+  ellipse(-clockSize / hoursScale, 0, clockSize / 7, clockSize / 7);
   pop();
 }
